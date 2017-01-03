@@ -1,64 +1,64 @@
+# Using a pair of databases we will do a brief and basic analysis of descriptive statistics using R.
+# At the end of the article you can find the corresponding links to get both the script and the databases
+# so that you can perform the exercise.
+
+
 # Install and load the packages we are going to use
 
 install.packages("sm")
 install.packages("plotrix")
 library(sm)
 library(plotrix)
+library(grDevices)
+ 
 
-# Because we are going to refer to external data, it is
-# necessary to define a working directory. In this directory
-# are my databases. To define it is through the function:
+# It is Necessary to define the working directory. In this directory are your databases. To define it is
+#through the function:
 
-setwd("my working directory")
+setwd("my_working_directory")
 
-# It is important that the place where our data is located
-# in quotation marks. However, if we are working in RStudio,
-# it is easy to define our working directory: at the top of
-# our program we choose Tools -> Set Working Directory -> Choose Directory ...
+# However, if we are working in RStudio, it is easy to define our working directory: at the top of our
+# program we choose Tools -> Set Working Directory -> Choose Directory ...
 # Then select the folder where the data is located.
-# For example, in windows and if I have my data in Documents I write:
+ 
+# Once we have defined the working directory, we read my data:
+ 
+## First Example
 
-setwd("C:/Users/Documents/Statistics/Notes")
+ 
 
-# Once I have defined the working directory, I read my data:
 OAS <- read.csv("OAS.csv", header = T)
+ 
 
-# In this case, the data is stored in a csv (coma separate value)
-# format, a very efficient way for fairly large databases.
-# The database is defined as the name of the variable and their
-# respective values; This is why I write header = T. It is also
-# possible to refer to the variables by their name, this by means of:
+# In this case, the data is stored in a csv (coma separate value) format, a very efficient way for
+# fairly large databases.
+# The database is defined as the name of the variable and their respective values; This is why I
+# write header = T. It is also possible to refer to the variables by their name, this by means of:
 
 attach(OAS)
 
-# Now graph, for example the population. In this case, a library
-# is necessary.
-# To install it I go to Tools -> Install Packages and a window opens
-# where I type the name of the library, in this case grDevices.
-# Once it has been instantiated, we write:
+#Now we plot a first graph: graph of vertical bars.
 
-require(grDevices)
+barplot(Population, names.arg = StatesMembers, las = 2, cex.axis = 0.7, cex.names = 0.6,
+        col = terrain.colors(length(Poblacion)), main = "Population of states belonging to the OAS", horiz = F)
 
-# To load the package. Now we plot:
-# First graph: graph of vertical bars.
+# Now graph of horizontal bars.
+ 
 
-barplot(Population, names.arg = StatesMembers, las = 2, 
-        cex.axis = 0.7, cex.names = 0.6, col = terrain.colors(length(Poblacion)),
-        main = "Population of states belonging to the OAS", horiz = F)
+barplot(Population, names.arg = StatesMembers, las = 1, cex.axis = 0.7, cex.names = 0.6,
+        col = terrain.colors(length(Poblacion)), main = "Population of states belonging to the OAS", horiz = T)
 
-# Now graph of vertical bars.
-barplot(Population, names.arg = StatesMembers, las = 1, 
-        cex.axis = 0.7, cex.names = 0.6, col = terrain.colors(length(Poblacion)),
-        main = "Population of states belonging to the OAS", horiz = T)
+#Now sector graph.
 
-# Third graph: sector graph. Note that it is necessary to install a
-# library: plotrix
-pie3D(Population[1:5], labels = StatesMembers[1:5], explode = 0,
-      main="Population of states belonging to the OAS", 
+pie3D(Population[1:5], labels = StatesMembers[1:5], explode = 0,main="Population of states belonging to the OAS",
       col = terrain.colors(length(StatesMembers[1:5])))
 
-# Next Example
-#We now consider the heights of 100 students. First read the data:
+## Second Example
+
+#We now consider the heights of 100 students.
+
+#First read the data:
+
 est <- read.csv("height.csv")
 
 # We calculate the frequency table:
@@ -77,18 +77,20 @@ freq.tab <- function(data, n.int){
   return(tab)
 }
 
-# For example, if you have 7 class intervals, write
+# For example, if you have 6 class intervals, write:
 
 freq.tab(est$Height, 6)
 
 # And automatically gives us a list of objects.
-# First the class intervals appear, the Class, frequencies,
-# relative frequencies and cumulative frequencies.
-# We can vary the number of class intervals, for example
+# First the class intervals appear, the Class, frequencies, relative frequencies and cumulative frequencies.
+# We can vary the number of class intervals, for example:
 
 freq.tab(est$Height, 9)
 
 # Now we graph the histogram of the data "est":
-hist(est$Height, xlab = "Sample", ylab = "", main = "Frequency Histogram", col = terrain.colors(13), border = "white", 
-     cex.lab = 0.7, cex.main = 0.9, cex.axis = 0.7)
+
+hist(est$Height, xlab = "Sample", ylab = "", main = "Frequency Histogram", col = terrain.colors(13),
+     border = "white", cex.lab = 0.7, cex.main = 0.9, cex.axis = 0.7)
+ 
+
 # In this case, R considers 8 class intervals.
