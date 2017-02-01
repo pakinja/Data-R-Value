@@ -35,9 +35,8 @@ parabolic <- function(vo, alfa){
   y <- vector()
   p <- seq(0.0, round(L), round(L)/100)
   #print(p)
-  for(i in 0:length(p)){
-    y[i] <- (tan(an)*p[i])-((g/((2*vo^2)*cos(an)^2))*p[i]^2)
-   }
+  y <- (tan(an)*p)-((g/((2*vo^2)*cos(an)^2))*(p^2))
+  
   #print(y)
   plot(p, y, xlab="X", ylab="Y", type = "o", col = "red", axes=F)
   axis(1, at = seq(0,L,L/10),labels=seq(0,L,L/10),
