@@ -1,3 +1,8 @@
+### "An Introduction to Statistical Learning.
+### With applications in R" by Gareth James,
+### Daniela Witten, Trevor Hastie and Robert Tibshirani.
+### Springer 2015.
+
 
 ### install and load required packages
 #install.packages("ISLR")
