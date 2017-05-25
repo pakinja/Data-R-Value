@@ -15,19 +15,20 @@ myfiles = lapply(temp, read.csv, header=FALSE)
 ### most frequent and make it the first row of a dataframe
 pop_names <- filter(data.frame(myfiles[1]), V2 == "F")[1,c(1,3)]
 
-### loop to do the last step for all data files
+### loop to do the previous step for all data files
 for(i in 2:length(myfiles)){
 
   pop_names <- rbind(pop_names, filter(data.frame(myfiles[i]), V2 == "F")[1,c(1,3)])
   
 }
 
-### relevel names variable
+### set levels for $names variable
 pop_names$V1 <- factor(pop_names$V1, levels = unique(pop_names$V1))
 
 ### make year series
 Year <- seq(1880, 2016, 1)
-### bind year variable to dataframe
+
+### bind $year variable to dataframe
 pop_names <- cbind(pop_names, Year)
 
 ### set dataframe names
@@ -52,19 +53,20 @@ ggplot(pop_names, aes(x = Year, y = Frequency))+
 ### most frequent and make it the first row of a dataframe
 pop_names_m <- filter(data.frame(myfiles[1]), V2 == "M")[1,c(1,3)]
 
-### loop to do the last step for all data files
+### loop to do the previous step for all data files
 for(i in 2:length(myfiles)){
   
   pop_names_m <- rbind(pop_names_m, filter(data.frame(myfiles[i]), V2 == "M")[1,c(1,3)])
   
 }
 
-### relevel names variable
+### set levels for $names variable
 pop_names_m$V1 <- factor(pop_names_m$V1, levels = unique(pop_names_m$V1))
 
 ### make year series
 Year <- seq(1880, 2016, 1)
-### bind year variable to dataframe
+
+### bind $year variable to dataframe
 pop_names_m <- cbind(pop_names_m, Year)
 
 ### set dataframe names
