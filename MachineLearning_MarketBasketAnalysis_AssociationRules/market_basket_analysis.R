@@ -1,3 +1,6 @@
+### "Machine Learning in R" by Brett Lantz,
+### PACKT publishing 2015
+### (open source community experience destilled)
 
 ### install and load required packages
 install.packages("arules")
